@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+//Claase para procesar los datos GPS
 public class ProcesadorDatosGPS {
 
     // Validar un registro GPS

@@ -3,6 +3,7 @@ package procesamiento;
 import modelo.DatoGPS;
 import modelo.Parada;
 
+//Clase para estimar el tiempo de llegada de un autobús
 public class EstimadorLlegada {
 
     private static final double RADIO_TIERRA_KM = 6371.0;

@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//Clase para controlar los tiempos entre buses y paradas
 public class ControladorTiempos {
 
     private static final String RUTA_DATOS_GPS = "datos_simulados/";
@@ -59,7 +60,6 @@ public class ControladorTiempos {
             DatoGPS gps = entry.getValue();
             int minutos = EstimadorLlegada.estimarMinutosRestantes(gps, destino);
 
-            // Limpiar nombre del bus → "BUS27" → "27"
             String idLimpio = idBus.replaceAll("BUS", "");
 
             if (minutos < 0) {

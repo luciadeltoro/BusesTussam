@@ -5,7 +5,7 @@ public class Parada {
     private String linea;
     private double latitud;
     private double longitud;
-    private int orden; // posición en la ruta
+    private int orden;
 
     public Parada(String nombre, String linea, double latitud, double longitud, int orden) {
         this.nombre = nombre;

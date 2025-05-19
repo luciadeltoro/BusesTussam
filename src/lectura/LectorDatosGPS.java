@@ -14,7 +14,7 @@ public class LectorDatosGPS {
 
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
-            lector.readLine(); // Saltar encabezado
+            lector.readLine();
 
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.trim().split(",");

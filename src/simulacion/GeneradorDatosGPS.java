@@ -14,11 +14,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//Es necesario ejecutar esta clase para actualizar los datos generados antes de ejecutar el main.
 public class GeneradorDatosGPS {
 
     private static final String CARPETA_SALIDA = "datos_simulados/";
     private static final String CARPETA_JSON = "datos_simulados_json/";
-    private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter FORMATO = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     private static final Map<String, String> BUSES = Map.of(
             "BUS27", "27",
@@ -90,7 +91,6 @@ public class GeneradorDatosGPS {
             }
         }
 
-        // Exportar JSON por bus
         ExportadorJSON.exportarDatosPorBus(todosLosDatos, CARPETA_JSON);
     }
 }

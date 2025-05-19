@@ -15,7 +15,7 @@ public class LectorParadas {
                 new InputStreamReader(new FileInputStream(rutaArchivo), StandardCharsets.UTF_8))) {
 
             String linea;
-            lector.readLine(); // Saltar encabezado
+            lector.readLine();
 
             while ((linea = lector.readLine()) != null) {
                 String[] partes = linea.trim().split(",");

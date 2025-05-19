@@ -7,18 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+//Ventana para poder ejecutar la parte visual del programa
 public class Ventana extends JFrame {
     private CardLayout layout;
     private JPanel panelContenedor;
 
-    // Paneles únicos y reutilizables
+    // Paneles reutilizables
     private PanelSeleccionLinea panelSeleccion;
     private PanelTiemposParada panelTiemposParada;
     private PanelResumenLinea panelResumenLinea;
     private PanelAdmin panelAdmin;
 
     public Ventana() {
-        setTitle("Sistema de Autobuses de Sevilla");
+        setTitle("Buses Tussam");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
         setLocationRelativeTo(null);
@@ -26,8 +27,11 @@ public class Ventana extends JFrame {
         layout = new CardLayout();
         panelContenedor = new JPanel(layout);
 
-        // Leer datos GPS para el panel admin (por ahora usamos línea 27)
-        ArrayList<DatoGPS> datosAdmin = LectorDatosGPS.leerDatosGPS("datos_simulados/linea27.csv");
+        // Leer datos de las tres líneas para panelAdmin
+        ArrayList<DatoGPS> datosAdmin = new ArrayList<>();
+        datosAdmin.addAll(LectorDatosGPS.leerDatosGPS("datos_simulados/linea27.csv"));
+        datosAdmin.addAll(LectorDatosGPS.leerDatosGPS("datos_simulados/linea22.csv"));
+        datosAdmin.addAll(LectorDatosGPS.leerDatosGPS("datos_simulados/lineaB4.csv"));
 
         // Crear paneles
         panelSeleccion = new PanelSeleccionLinea(this);
@@ -35,13 +39,9 @@ public class Ventana extends JFrame {
         panelResumenLinea = new PanelResumenLinea();
         panelAdmin = new PanelAdmin(this, datosAdmin);
 
-        // Acción del botón Volver en panelTiempos
+        // Botones volver
         panelTiemposParada.getBotonVolver().addActionListener(e -> mostrarPanel("seleccionLinea"));
-
-        // Acción del botón Volver en resumen
         panelResumenLinea.getBotonVolver().addActionListener(e -> mostrarPanel("seleccionLinea"));
-
-        // Acción del botón Volver en panel admin ya está dentro de PanelAdmin
 
         // Agregar paneles al contenedor
         panelContenedor.add(panelSeleccion, "seleccionLinea");
@@ -50,15 +50,15 @@ public class Ventana extends JFrame {
         panelContenedor.add(panelAdmin, "admin");
 
         add(panelContenedor);
+
+        // Mostrar panel de administración por defecto (menú principal)
         layout.show(panelContenedor, "admin");
     }
 
-    // Métodos para cambiar de panel
     public void mostrarPanel(String nombre) {
         layout.show(panelContenedor, nombre);
     }
 
-    // Getters para acceder desde otros paneles
     public PanelTiemposParada getPanelTiemposParada() {
         return panelTiemposParada;
     }
